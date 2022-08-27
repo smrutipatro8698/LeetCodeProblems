@@ -1,0 +1,26 @@
+A beautiful algorithm to find the contiguous subarray (given an array) which has the maximum sum. Below is my (pathetic) attempt at describing it: 
+
+So I start with the first element and keep looping through each element in the array. At every stop, I see if my sum so far is +ve or -ve. 
+  - If -ve, the subarray till now can be seen as one element has worsened off my progress to the goal of acheiveing maximum sum. So I blissfully ignore it and set that the current sum is just 0 (brutal but hey! )
+  - If +ve, the subarray which again can be seen as just one element (whose value is sum of the subarray) brings something valuable to the table. So I update my max seen so far with the max(current sum, max seen so far)
+
+Code snippet - 
+
+  int maxSubArraySum(int a[], int size)
+  {
+      int max_so_far = INT_MIN, max_ending_here = 0;
+
+      for (int i = 0; i < size; i++)
+      {
+          max_ending_here = max_ending_here + a[i];
+          if (max_so_far < max_ending_here)
+              max_so_far = max_ending_here;
+
+          if (max_ending_here < 0)
+              max_ending_here = 0;
+      }
+      return max_so_far;
+  }
+  
+
+Beautiful indeed! :) 
